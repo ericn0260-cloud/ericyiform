@@ -1,0 +1,25 @@
+body{
+    width: 100%;
+    height: 100vh;
+}
+
+
+h1{
+    color: blueviolet;
+    animation: bouger 6s linear infinite;
+}
+
+@keyframes bouger{
+    0%{
+        transform: translate(0);
+    }
+25%{
+        transform: translate(500px,0);
+    }
+   50%{
+        transform: translate(500px,200px);
+    }
+     75%{
+        transform: translate(500px,200px);
+    }
+}

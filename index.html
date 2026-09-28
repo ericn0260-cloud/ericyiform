@@ -1,0 +1,1137 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Paiement en ligne</title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+
+        body {
+            background: #f1f5f9;
+            color: #1e293b;
+        }
+
+
+        /* ================================
+           HEADER
+        ================================= */
+
+        header {
+            background: #0f766e;
+            color: white;
+            padding: 25px 15px;
+            text-align: center;
+        }
+
+
+        header h1 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+
+        header p {
+            font-size: 16px;
+        }
+
+
+        /* ================================
+           CONTENEUR
+        ================================= */
+
+        .container {
+            width: 92%;
+            max-width: 900px;
+            margin: 30px auto;
+        }
+
+
+        /* ================================
+           CARDS
+        ================================= */
+
+        .card {
+            background: white;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+
+        .card h2 {
+            color: #0f766e;
+            margin-bottom: 20px;
+        }
+
+
+        /* ================================
+           METEO
+        ================================= */
+
+        .weather {
+            text-align: center;
+            background: #e0f2fe;
+            padding: 25px;
+            border-radius: 12px;
+        }
+
+
+        .weather-city {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+
+        .temperature {
+            font-size: 48px;
+            font-weight: bold;
+            color: #0369a1;
+            margin: 15px 0;
+        }
+
+
+        .weather-info {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+
+        .weather-item {
+            background: white;
+            padding: 12px 20px;
+            border-radius: 10px;
+        }
+
+
+        .weather-item strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+
+        #description {
+            font-size: 17px;
+            margin-top: 10px;
+        }
+
+
+        /* ================================
+           FORMULAIRE
+        ================================= */
+
+        .form-group {
+            margin-bottom: 17px;
+        }
+
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+
+        input,
+        select {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: #0f766e;
+        }
+
+
+        /* ================================
+           BOUTON ENREGISTRER
+        ================================= */
+
+        #submitButton {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            background: #0f766e;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+
+        #submitButton:hover {
+            background: #115e59;
+        }
+
+
+        #submitButton:disabled {
+            background: #94a3b8;
+            cursor: not-allowed;
+        }
+
+
+        /* ================================
+           MESSAGE
+        ================================= */
+
+        #message {
+            display: none;
+            margin-top: 15px;
+            padding: 14px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+
+        .success {
+            display: block !important;
+            background: #dcfce7;
+            color: #166534;
+        }
+
+
+        .error {
+            display: block !important;
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+
+        .loading {
+            display: block !important;
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+
+        /* ================================
+           WHATSAPP
+        ================================= */
+
+        .whatsapp {
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            background: #25D366;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+
+        .whatsapp:hover {
+            background: #1ebe5d;
+        }
+
+
+        /* ================================
+           FOOTER
+        ================================= */
+
+        footer {
+            text-align: center;
+            padding: 22px;
+            background: #0f172a;
+            color: white;
+            margin-top: 30px;
+        }
+
+
+        /* ================================
+           TELEPHONE
+        ================================= */
+
+        @media (max-width: 600px) {
+
+            .container {
+                width: 95%;
+            }
+
+
+            .card {
+                padding: 18px;
+            }
+
+
+            header h1 {
+                font-size: 24px;
+            }
+
+
+            .temperature {
+                font-size: 40px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ======================================
+     HEADER
+======================================= -->
+
+<header>
+
+    <h1>💳 Paiement en ligne</h1>
+
+    <p>
+        Effectuez votre paiement rapidement et simplement
+    </p>
+
+</header>
+
+
+
+<div class="container">
+
+
+    <!-- ======================================
+         METEO
+    ======================================= -->
+
+    <div class="card">
+
+        <h2>🌤️ Météo actuelle</h2>
+
+
+        <div class="weather">
+
+            <div class="weather-city">
+                📍 Bujumbura, Burundi
+            </div>
+
+
+            <div
+                class="temperature"
+                id="temperature">
+
+                Chargement...
+
+            </div>
+
+
+            <div id="description">
+                Chargement de la météo...
+            </div>
+
+
+            <div class="weather-info">
+
+
+                <div class="weather-item">
+
+                    <strong>💧 Humidité</strong>
+
+                    <span id="humidite">
+                        --
+                    </span>
+
+                </div>
+
+
+                <div class="weather-item">
+
+                    <strong>💨 Vent</strong>
+
+                    <span id="vent">
+                        --
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ======================================
+         FORMULAIRE DE PAIEMENT
+    ======================================= -->
+
+    <div class="card">
+
+        <h2>💰 Formulaire de paiement</h2>
+
+
+        <form id="paymentForm">
+
+
+            <!-- NOM -->
+
+            <div class="form-group">
+
+                <label for="nom">
+                    Nom *
+                </label>
+
+                <input
+                    type="text"
+                    id="nom"
+                    name="nom"
+                    placeholder="Votre nom"
+                    required>
+
+            </div>
+
+
+
+            <!-- PRENOM -->
+
+            <div class="form-group">
+
+                <label for="prenom">
+                    Prénom *
+                </label>
+
+                <input
+                    type="text"
+                    id="prenom"
+                    name="prenom"
+                    placeholder="Votre prénom"
+                    required>
+
+            </div>
+
+
+
+            <!-- TELEPHONE -->
+
+            <div class="form-group">
+
+                <label for="telephone">
+                    Téléphone *
+                </label>
+
+                <input
+                    type="tel"
+                    id="telephone"
+                    name="telephone"
+                    placeholder="+257..."
+                    required>
+
+            </div>
+
+
+
+            <!-- EMAIL -->
+
+            <div class="form-group">
+
+                <label for="email">
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="exemple@gmail.com">
+
+            </div>
+
+
+
+            <!-- MONTANT -->
+
+            <div class="form-group">
+
+                <label for="montant">
+                    Montant à payer *
+                </label>
+
+                <input
+                    type="number"
+                    id="montant"
+                    name="montant"
+                    placeholder="Exemple : 50000"
+                    min="1"
+                    required>
+
+            </div>
+
+
+
+            <!-- DEVISE -->
+
+            <div class="form-group">
+
+                <label for="devise">
+                    Devise
+                </label>
+
+                <select
+                    id="devise"
+                    name="devise">
+
+                    <option value="BIF">
+                        BIF - Franc Burundi
+                    </option>
+
+                    <option value="USD">
+                        USD - Dollar
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- METHODE -->
+
+            <div class="form-group">
+
+                <label for="methode">
+                    Méthode de paiement *
+                </label>
+
+                <select
+                    id="methode"
+                    name="methode"
+                    required>
+
+                    <option value="">
+                        -- Choisir une méthode --
+                    </option>
+
+                    <option value="Lumicash">
+                        Lumicash
+                    </option>
+
+                    <option value="Ecocash">
+                        Ecocash
+                    </option>
+
+                    <option value="Carte bancaire">
+                        Carte bancaire
+                    </option>
+
+                    <option value="Autre">
+                        Autre
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- REFERENCE -->
+
+            <div class="form-group">
+
+                <label for="reference">
+                    Référence de transaction
+                </label>
+
+                <input
+                    type="text"
+                    id="reference"
+                    name="reference"
+                    placeholder="Exemple : TXN123456">
+
+            </div>
+
+
+
+            <!-- BOUTON -->
+
+            <button
+                type="submit"
+                id="submitButton">
+
+                ✅ Enregistrer le paiement
+
+            </button>
+
+
+        </form>
+
+
+
+        <!-- MESSAGE -->
+
+        <div id="message"></div>
+
+
+
+        <!-- WHATSAPP -->
+
+        <a
+            id="whatsappButton"
+            class="whatsapp"
+            href="#"
+            target="_blank">
+
+            📱 Contacter par WhatsApp
+
+        </a>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- ======================================
+     FOOTER
+======================================= -->
+
+<footer>
+
+    <p>
+        © 2026 - Service de paiement
+    </p>
+
+</footer>
+
+
+
+<script>
+
+
+/* =====================================================
+   GOOGLE APPS SCRIPT
+===================================================== */
+
+const GOOGLE_SCRIPT_URL =
+    "https://script.google.com/macros/s/AKfycbx-Yz6oipDmivyH-Y8KfS4MGo5RD18Mk5mji39TexkFVgQ9GSHyOjJNh_GMhWfcO0E/exec";
+
+
+
+/* =====================================================
+   WHATSAPP
+===================================================== */
+
+const WHATSAPP_NUMBER =
+    "257694448331";
+
+
+
+/* =====================================================
+   METEO
+===================================================== */
+
+async function chargerMeteo() {
+
+    try {
+
+        const latitude = -3.3731;
+
+        const longitude = 29.9189;
+
+
+        const url =
+            "https://api.open-meteo.com/v1/forecast" +
+
+            "?latitude=" + latitude +
+
+            "&longitude=" + longitude +
+
+            "&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code" +
+
+            "&temperature_unit=celsius" +
+
+            "&wind_speed_unit=kmh" +
+
+            "&timezone=Africa%2FBujumbura";
+
+
+        const response =
+            await fetch(url);
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Impossible de contacter le service météo"
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        const current =
+            data.current;
+
+
+        /* TEMPERATURE */
+
+        document.getElementById(
+            "temperature"
+        ).textContent =
+            current.temperature_2m + " °C";
+
+
+        /* HUMIDITE */
+
+        document.getElementById(
+            "humidite"
+        ).textContent =
+            current.relative_humidity_2m + " %";
+
+
+        /* VENT */
+
+        document.getElementById(
+            "vent"
+        ).textContent =
+            current.wind_speed_10m + " km/h";
+
+
+        /* DESCRIPTION */
+
+        document.getElementById(
+            "description"
+        ).textContent =
+            obtenirDescriptionMeteo(
+                current.weather_code
+            );
+
+
+    } catch (error) {
+
+        console.error(
+            "Erreur météo :",
+            error
+        );
+
+
+        document.getElementById(
+            "temperature"
+        ).textContent =
+            "-- °C";
+
+
+        document.getElementById(
+            "humidite"
+        ).textContent =
+            "--";
+
+
+        document.getElementById(
+            "vent"
+        ).textContent =
+            "--";
+
+
+        document.getElementById(
+            "description"
+        ).textContent =
+            "❌ Météo indisponible";
+
+    }
+
+}
+
+
+
+/* =====================================================
+   DESCRIPTION METEO
+===================================================== */
+
+function obtenirDescriptionMeteo(code) {
+
+
+    if (code === 0) {
+
+        return "☀️ Ciel dégagé";
+
+    }
+
+
+    if (code === 1 ||
+        code === 2 ||
+        code === 3) {
+
+        return "⛅ Partiellement nuageux";
+
+    }
+
+
+    if (code === 45 ||
+        code === 48) {
+
+        return "🌫️ Brouillard";
+
+    }
+
+
+    if (
+        code >= 51 &&
+        code <= 57
+    ) {
+
+        return "🌦️ Bruine";
+
+    }
+
+
+    if (
+        code >= 61 &&
+        code <= 67
+    ) {
+
+        return "🌧️ Pluie";
+
+    }
+
+
+    if (
+        code >= 71 &&
+        code <= 77
+    ) {
+
+        return "❄️ Neige";
+
+    }
+
+
+    if (
+        code >= 80 &&
+        code <= 82
+    ) {
+
+        return "🌦️ Averses";
+
+    }
+
+
+    if (
+        code >= 95 &&
+        code <= 99
+    ) {
+
+        return "⛈️ Orage";
+
+    }
+
+
+    return "🌤️ Conditions météo actuelles";
+
+}
+
+
+
+/* =====================================================
+   WHATSAPP
+===================================================== */
+
+function mettreAJourWhatsApp() {
+
+
+    const nom =
+        document.getElementById("nom").value;
+
+
+    const prenom =
+        document.getElementById("prenom").value;
+
+
+    const telephone =
+        document.getElementById("telephone").value;
+
+
+    const montant =
+        document.getElementById("montant").value;
+
+
+    const devise =
+        document.getElementById("devise").value;
+
+
+    const methode =
+        document.getElementById("methode").value;
+
+
+    const reference =
+        document.getElementById("reference").value;
+
+
+    const texte =
+
+        "Bonjour, je viens de remplir le formulaire de paiement.%0A%0A" +
+
+        "Nom : " + nom + " " + prenom + "%0A" +
+
+        "Téléphone : " + telephone + "%0A" +
+
+        "Montant : " + montant + " " + devise + "%0A" +
+
+        "Méthode : " + methode + "%0A" +
+
+        "Référence : " + reference;
+
+
+    const url =
+
+        "https://wa.me/" +
+
+        WHATSAPP_NUMBER +
+
+        "?text=" +
+
+        texte;
+
+
+    document.getElementById(
+        "whatsappButton"
+    ).href = url;
+
+}
+
+
+
+/* =====================================================
+   ENVOI VERS GOOGLE SHEETS
+===================================================== */
+
+document
+    .getElementById("paymentForm")
+    .addEventListener(
+        "submit",
+        async function(event) {
+
+
+            event.preventDefault();
+
+
+            const message =
+                document.getElementById(
+                    "message"
+                );
+
+
+            const bouton =
+                document.getElementById(
+                    "submitButton"
+                );
+
+
+            /* MESSAGE CHARGEMENT */
+
+            message.className =
+                "loading";
+
+
+            message.textContent =
+                "⏳ Enregistrement en cours...";
+
+
+            bouton.disabled = true;
+
+
+            /* DONNEES */
+
+            const donnees = {
+
+                date:
+                    new Date().toLocaleString(
+                        "fr-FR"
+                    ),
+
+                nom:
+                    document.getElementById(
+                        "nom"
+                    ).value,
+
+                prenom:
+                    document.getElementById(
+                        "prenom"
+                    ).value,
+
+                telephone:
+                    document.getElementById(
+                        "telephone"
+                    ).value,
+
+                email:
+                    document.getElementById(
+                        "email"
+                    ).value,
+
+                montant:
+                    document.getElementById(
+                        "montant"
+                    ).value,
+
+                devise:
+                    document.getElementById(
+                        "devise"
+                    ).value,
+
+                methode:
+                    document.getElementById(
+                        "methode"
+                    ).value,
+
+                reference:
+                    document.getElementById(
+                        "reference"
+                    ).value
+
+            };
+
+
+            try {
+
+
+                await fetch(
+
+                    GOOGLE_SCRIPT_URL,
+
+                    {
+
+                        method: "POST",
+
+                        mode: "no-cors",
+
+                        headers: {
+
+                            "Content-Type":
+                                "text/plain;charset=utf-8"
+
+                        },
+
+                        body:
+                            JSON.stringify(
+                                donnees
+                            )
+
+                    }
+
+                );
+
+
+                /* SUCCES */
+
+                message.className =
+                    "success";
+
+
+                message.textContent =
+                    "✅ Paiement enregistré avec succès !";
+
+
+                /* METTRE A JOUR WHATSAPP */
+
+                mettreAJourWhatsApp();
+
+
+                /* VIDER LE FORMULAIRE */
+
+                document
+                    .getElementById(
+                        "paymentForm"
+                    )
+                    .reset();
+
+
+            } catch (error) {
+
+
+                console.error(
+                    "Erreur Google Sheets :",
+                    error
+                );
+
+
+                message.className =
+                    "error";
+
+
+                message.textContent =
+                    "❌ Erreur lors de l'enregistrement dans Google Sheets.";
+
+
+            } finally {
+
+                bouton.disabled = false;
+
+            }
+
+        }
+    );
+
+
+
+/* =====================================================
+   ACTUALISATION WHATSAPP
+===================================================== */
+
+document
+    .getElementById("paymentForm")
+    .addEventListener(
+        "input",
+        mettreAJourWhatsApp
+    );
+
+
+document
+    .getElementById("paymentForm")
+    .addEventListener(
+        "change",
+        mettreAJourWhatsApp
+    );
+
+
+
+/* =====================================================
+   DEMARRAGE
+===================================================== */
+
+chargerMeteo();
+
+mettreAJourWhatsApp();
+
+
+</script>
+
+
+</body>
+
+</html>
